@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>To do List</title>
+	<style type="text/css">
+		body {
+			color:#c0c0c0;
+		}
+	</style>
+</head>
+<body>
+	<h1>To Do List</h1>
+	<div>
+		<form action="/add" method="POST">
+			<input type="text" name="task_name">
+			<input type="submit" name="submit">
+		</form>
+		<div>
+			<h2>Incomplete Task List</h2>
+			<ul>
+				{% for todos in incompletetask %}
+				<li style="font-size: 18pt color:#000" >{{todos.task}} Task Status = InComplete
+					<a href="{{ url_for('update',id_=todos.id) }}">Task Completed</a>
+				</li>
+
+				{% endfor %}
+			</ul>
+		</div>
+
+		<div>
+			<h2>Completed Task List</h2>
+		
+			<ul>
+				{% for todos in completetask %}
+				<li style="font-size: 18pt color:#000" >{{todos.task}} Task Status = Completed
+						<a href="{{ url_for('delete',id_=todos.id) }}">Delete Task Completed</a>				
+				</li>
+
+				{% endfor %}
+			</ul>
+		</div>
+
+	</div>
+</body>
+</html>
